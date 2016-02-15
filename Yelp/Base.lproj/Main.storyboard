@@ -61,7 +61,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thai, Seafood, Salad" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DI3-4D-Ejy">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thai, Seafood, Salad" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DI3-4D-Ejy">
                                                     <rect key="frame" x="81" y="70" width="124.5" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -93,6 +93,7 @@
                                                 <constraint firstItem="ZfJ-tp-gHk" firstAttribute="leading" secondItem="Pyi-LJ-va0" secondAttribute="trailing" constant="8" id="IV3-S7-3lZ"/>
                                                 <constraint firstItem="caW-Tz-ktB" firstAttribute="centerY" secondItem="tP2-Ys-ehG" secondAttribute="centerY" id="Ib8-PL-W5N"/>
                                                 <constraint firstItem="Pyi-LJ-va0" firstAttribute="leading" secondItem="iP9-YF-fbq" secondAttribute="leading" constant="8" id="KOc-e1-zRk"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="DI3-4D-Ejy" secondAttribute="trailing" constant="8" id="NX7-oX-rXB"/>
                                                 <constraint firstItem="Rfd-BR-EGV" firstAttribute="top" secondItem="iP9-YF-fbq" secondAttribute="topMargin" constant="3" id="a8f-Ne-Gu0"/>
                                                 <constraint firstItem="ZfJ-tp-gHk" firstAttribute="top" secondItem="tP2-Ys-ehG" secondAttribute="bottom" constant="4" id="f5j-0m-Wo1"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="DI3-4D-Ejy" secondAttribute="bottom" constant="5" id="fcB-9e-C1F"/>
@@ -188,27 +189,23 @@
                                             <outlet property="switchLabel" destination="eR5-n3-fjG" id="bo4-Ry-rxj"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DropDownCell" id="6Fl-18-LNq" customClass="DropDownTableViewCell" customModule="Yelp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="147" width="310" height="55"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DropDownCell" rowHeight="294" id="6Fl-18-LNq" customClass="DropDownTableViewCell" customModule="Yelp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="147" width="310" height="294"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Fl-18-LNq" id="DPR-dw-1rn">
-                                            <rect key="frame" x="0.0" y="0.0" width="310" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="310" height="293.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gx6-jc-pVx">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gx6-jc-pVx">
                                                     <rect key="frame" x="0.0" y="0.0" width="276" height="43"/>
                                                     <state key="normal" title="Button"/>
                                                     <connections>
                                                         <action selector="click:" destination="6Fl-18-LNq" eventType="touchUpInside" id="Yy0-pW-jH9"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="ndb-dC-R71">
-                                                    <rect key="frame" x="280" y="8" width="30" height="38.5"/>
-                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="arrow" destination="ndb-dC-R71" id="fIo-QH-AC6"/>
                                             <outlet property="dropButton" destination="Gx6-jc-pVx" id="ULC-EH-y3i"/>
                                         </connections>
                                     </tableViewCell>
@@ -280,7 +277,4 @@
             <point key="canvasLocation" x="1883" y="319"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="arrow" width="30" height="30"/>
-    </resources>
 </document>

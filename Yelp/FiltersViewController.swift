@@ -18,6 +18,9 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet var tableView: UITableView!
     var switchStates = [Int : Bool]()
     var deals : Bool = false
+    let distances = ["Best Match", "0.3 miles", "1 mile", "5 miles","20 miles"]
+    let sort = ["Best Match", "Distance", "Rating"]
+
     
     let categories = [["name" : "Afghan", "code": "afghani"],
         ["name" : "African", "code": "african"],
@@ -215,41 +218,63 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
         if(section == 3)
         {
             return categories.count
-        } else {
-        return 1
+        } else if section == 1 {
+        return 5
+        } else if section == 2 {
+            return 3
+        }
+        else {
+            return 1
         }
     }
 
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("filterCell", forIndexPath: indexPath) as! FilterCell
-
-        cell.delegate = self
+        
         if(indexPath.section == 3)
+            
         {
+            let cell = tableView.dequeueReusableCellWithIdentifier("filterCell", forIndexPath: indexPath) as! FilterCell
+            
+            cell.delegate = self
             cell.switchLabel.text = categories[indexPath.row]["name"]
+             cell.onSwitch.on = switchStates[indexPath.row] ?? false
+             return cell
         }  else if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("filterCell", forIndexPath: indexPath) as! FilterCell
+            
+            cell.delegate = self
             cell.switchLabel.text = "Offering a Deal"
+            cell.onSwitch.on = switchStates[indexPath.row] ?? false
             deals = cell.onSwitch.on
+            return cell
+
         } else if indexPath.section == 1 {
-            let dropDown = DropDown()
+            let cell = tableView.dequeueReusableCellWithIdentifier("DropDownCell", forIndexPath: indexPath) as! DropDownTableViewCell
+            cell.dropButton.setTitle(distances[indexPath.row], forState: UIControlState.Normal)
+    //        cell.delegate = self
+          //  let dropDown = DropDown()
 //            let view = UIView()
 //            v
 //            dropDown.width = 100
 //            
 //            dropDown.anchorView = view
           //  dropDown.direction = .Top
-            dropDown.dataSource = ["Best Match", "0.3 miles", "1 mile", "5 miles","20 miles"]
-            dropDown.show()
-            cell.switchLabel.hidden = true
-            cell.onSwitch.hidden = true
-cell.contentView.addSubview(dropDown)
+          //  dropDown.dataSource = ["Best Match", "0.3 miles", "1 mile", //"5 miles","20 miles"]
+           // dropDown.show()
+           //cell.contentView.addSubview(dropDown)
         //cell.switchLabel.text = "test"
+            return cell
         } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("DropDownCell", forIndexPath: indexPath) as! DropDownTableViewCell
+            cell.dropButton.setTitle(sort[indexPath.row], forState: UIControlState.Normal)
+            
+    //        cell.delegate = self
+            return cell
             
         }
        
-        return cell
+       
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 4;

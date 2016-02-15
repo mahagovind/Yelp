@@ -11,7 +11,6 @@ import DropDown
 
 class DropDownTableViewCell: UITableViewCell {
 
-    @IBOutlet var arrow: UIImageView!
     @IBOutlet var dropButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,5 +24,15 @@ class DropDownTableViewCell: UITableViewCell {
     }
 
     @IBAction func click(sender: AnyObject) {
+        let dropDown = DropDown()
+                   // let view = UIView()
+        
+        
+                   // dropDown.anchorView = view
+         // dropDown.direction = .Top
+        dropDown.dataSource = ["test"]
+//        dropDown.dataSource = ["Best Match", "0.3 miles", "1 mile", "5 miles","20 miles"]
+        var temp = dropDown.show()
+
     }
 }
