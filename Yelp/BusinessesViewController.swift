@@ -72,10 +72,19 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "filters") {
         let navController = segue.destinationViewController as! UINavigationController
         let filtersViewController = navController.topViewController as! FiltersViewController
         filtersViewController.delegate = self
+        } else {
+            let navController = segue.destinationViewController as! UINavigationController
+            let mapViewController = navController.topViewController as! MapViewController
+            mapViewController.businesses = businesses
+            
+        }
            }
+    
+    
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         if searchBar.text!.isEmpty {
             filteredBusinesses = businesses

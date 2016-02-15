@@ -61,7 +61,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thai, Seafood, Salad" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DI3-4D-Ejy">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Thai, Seafood, Salad" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DI3-4D-Ejy">
                                                     <rect key="frame" x="81" y="70" width="124.5" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -93,7 +93,7 @@
                                                 <constraint firstItem="ZfJ-tp-gHk" firstAttribute="leading" secondItem="Pyi-LJ-va0" secondAttribute="trailing" constant="8" id="IV3-S7-3lZ"/>
                                                 <constraint firstItem="caW-Tz-ktB" firstAttribute="centerY" secondItem="tP2-Ys-ehG" secondAttribute="centerY" id="Ib8-PL-W5N"/>
                                                 <constraint firstItem="Pyi-LJ-va0" firstAttribute="leading" secondItem="iP9-YF-fbq" secondAttribute="leading" constant="8" id="KOc-e1-zRk"/>
-                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="DI3-4D-Ejy" secondAttribute="trailing" constant="8" id="NX7-oX-rXB"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="DI3-4D-Ejy" secondAttribute="trailing" constant="8" id="NX7-oX-rXB"/>
                                                 <constraint firstItem="Rfd-BR-EGV" firstAttribute="top" secondItem="iP9-YF-fbq" secondAttribute="topMargin" constant="3" id="a8f-Ne-Gu0"/>
                                                 <constraint firstItem="ZfJ-tp-gHk" firstAttribute="top" secondItem="tP2-Ys-ehG" secondAttribute="bottom" constant="4" id="f5j-0m-Wo1"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="DI3-4D-Ejy" secondAttribute="bottom" constant="5" id="fcB-9e-C1F"/>
@@ -130,7 +130,12 @@
                     <navigationItem key="navigationItem" title="Yelp" id="Tha-RH-egY">
                         <barButtonItem key="leftBarButtonItem" title="Filters" id="3to-i7-Wkf">
                             <connections>
-                                <segue destination="b0d-tx-Rqc" kind="modal" id="Ucl-Af-ogp"/>
+                                <segue destination="b0d-tx-Rqc" kind="modal" identifier="filters" id="Ucl-Af-ogp"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Maps" id="Iay-rq-v3A">
+                            <connections>
+                                <segue destination="wk7-Dy-Br4" kind="modal" id="Vlw-83-iBv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -240,6 +245,39 @@
             </objects>
             <point key="canvasLocation" x="2415" y="319"/>
         </scene>
+        <!--Maps-->
+        <scene sceneID="yWr-rS-v6R">
+            <objects>
+                <viewController id="6kU-iZ-MwL" customClass="MapViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tGw-5g-QgY"/>
+                        <viewControllerLayoutGuide type="bottom" id="wPt-Zs-r5a"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qgQ-0U-ZOj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yAF-u5-5tY">
+                                <rect key="frame" x="-5" y="0.0" width="320" height="568"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Maps" id="qPb-2S-Ohb">
+                        <barButtonItem key="rightBarButtonItem" title="List" id="unR-wX-Xka">
+                            <connections>
+                                <action selector="onList:" destination="6kU-iZ-MwL" id="gW4-pn-IYv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="yAF-u5-5tY" id="cmy-id-cq0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VqD-p7-olX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2742" y="948"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="sXt-mQ-vM8">
             <objects>
@@ -275,6 +313,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1zI-p8-tKA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1883" y="319"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zaN-Oj-EtT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wk7-Dy-Br4" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="neo-4S-NXt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6kU-iZ-MwL" kind="relationship" relationship="rootViewController" id="LKy-QK-mN8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XBW-6i-Pza" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2210" y="948"/>
         </scene>
     </scenes>
 </document>
