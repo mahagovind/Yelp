@@ -24,6 +24,7 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
     var sortLabel : String = ""
     let distances = ["Best Match", "0.3 miles", "1 mile", "5 miles","20 miles"]
     let sort = ["Best Match", "Distance", "Rating"]
+    var catEnabled = false
 
     
     let categories = [["name" : "Afghan", "code": "afghani"],
@@ -221,7 +222,11 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
         // #warning Incomplete implementation, return the number of rows
         if(section == 3)
         {
+            if(catEnabled) {
             return categories.count
+            } else {
+                return 3
+            }
         } else if section == 1 {
             if(distEnabled) {
         return 5
@@ -261,8 +266,13 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
                 tableView.reloadData()
             }
         }
-
-        
+            
+            else  if(indexPath!.section) == 3 {
+                if(indexPath?.row == 2) {
+                    catEnabled = true
+                    tableView.reloadData()
+                }
+        }
        
     }
         
@@ -276,7 +286,15 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
             let cell = tableView.dequeueReusableCellWithIdentifier("filterCell", forIndexPath: indexPath) as! FilterCell
             
             cell.delegate = self
+            if( !catEnabled && indexPath.row == 2) {
+                cell.switchLabel.textAlignment = NSTextAlignment.Center
+                cell.switchLabel.text = "                             Show All"
+                cell.onSwitch.hidden = true
+            } else {
             cell.switchLabel.text = categories[indexPath.row]["name"]
+                cell.switchLabel.textAlignment = NSTextAlignment.Left
+                cell.onSwitch.hidden = false
+            }
              cell.onSwitch.on = switchStates[indexPath.row] ?? false
              return cell
         }  else if indexPath.section == 0 {
