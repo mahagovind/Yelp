@@ -209,14 +209,24 @@
                                                         <constraint firstAttribute="height" constant="30" id="vgh-0Y-0Ap"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7o-bd-jxr">
+                                                    <rect key="frame" x="17" y="48" width="42" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="T7o-bd-jxr" firstAttribute="centerY" secondItem="DPR-dw-1rn" secondAttribute="centerY" id="9Ym-ny-Wn4"/>
                                                 <constraint firstItem="pZt-qz-6Jg" firstAttribute="trailing" secondItem="DPR-dw-1rn" secondAttribute="trailingMargin" constant="-5" id="GGT-OY-Z3G"/>
+                                                <constraint firstItem="pZt-qz-6Jg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="T7o-bd-jxr" secondAttribute="trailing" constant="20" id="bsS-HE-Z1a"/>
+                                                <constraint firstItem="T7o-bd-jxr" firstAttribute="leading" secondItem="DPR-dw-1rn" secondAttribute="leading" constant="17" id="fWm-OX-5UA"/>
                                                 <constraint firstItem="pZt-qz-6Jg" firstAttribute="centerY" secondItem="DPR-dw-1rn" secondAttribute="centerY" id="kja-it-7wM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="arrow" destination="pZt-qz-6Jg" id="Kyg-Vu-Djh"/>
+                                            <outlet property="textFieldLabel" destination="T7o-bd-jxr" id="5pF-R9-TRb"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

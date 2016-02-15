@@ -311,35 +311,35 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             //cell.arrow.image = UIImage(named: "arrow.png");
             if(!distEnabled && distLabel != "" ) {
-                cell.textLabel!.text = distLabel
+                cell.textFieldLabel!.text = distLabel
                 cell.arrow.hidden = false
 
             } else {
-            cell.textLabel!.text = distances[indexPath.row]
+            cell.textFieldLabel!.text = distances[indexPath.row]
                 cell.arrow.hidden = true
                 
             }
             if(!distEnabled) {
                 cell.arrow.hidden = false
             }
-            distLabel = cell.textLabel!.text!
+            distLabel = cell.textFieldLabel!.text!
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("DropDownCell", forIndexPath: indexPath) as! DropDownTableViewCell
             
             if(!sortEnabled && sortLabel != "" ) {
-                cell.textLabel!.text = sortLabel
+                cell.textFieldLabel!.text = sortLabel
                 cell.arrow.hidden = false
                 
             } else {
-                cell.textLabel!.text = sort[indexPath.row]
+                cell.textFieldLabel!.text = sort[indexPath.row]
                 cell.arrow.hidden = true
                 
             }
             if(!sortEnabled) {
                 cell.arrow.hidden = false
             }
-            sortLabel = cell.textLabel!.text!
+            sortLabel = cell.textFieldLabel!.text!
             return cell
             
         }

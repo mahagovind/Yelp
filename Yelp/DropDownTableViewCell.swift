@@ -11,6 +11,7 @@ import DropDown
 
 class DropDownTableViewCell: UITableViewCell {
 
+    @IBOutlet var textFieldLabel: UILabel!
     @IBOutlet var arrow: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
