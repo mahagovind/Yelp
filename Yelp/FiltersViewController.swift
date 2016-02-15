@@ -18,6 +18,10 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet var tableView: UITableView!
     var switchStates = [Int : Bool]()
     var deals : Bool = false
+    var distEnabled = false
+    var sortEnabled = false
+    var distLabel : String = ""
+    var sortLabel : String = ""
     let distances = ["Best Match", "0.3 miles", "1 mile", "5 miles","20 miles"]
     let sort = ["Best Match", "Distance", "Rating"]
 
@@ -219,14 +223,49 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
         {
             return categories.count
         } else if section == 1 {
+            if(distEnabled) {
         return 5
+            } else {
+                return 1
+            }
         } else if section == 2 {
+            if sortEnabled {
             return 3
+            }  else {
+                return 1
+            }
         }
         else {
             return 1
         }
     }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let indexPath = tableView.indexPathForSelectedRow;
+        if(indexPath!.section) == 1 {
+            if(indexPath?.row == 0) {
+            distEnabled = true
+            tableView.reloadData()
+            } else {
+                distEnabled = false
+                distLabel = distances[indexPath!.row]
+                 tableView.reloadData()
+            }
+        } else  if(indexPath!.section) == 2 {
+            if(indexPath?.row == 0) {
+                sortEnabled = true
+                tableView.reloadData()
+            } else {
+                sortEnabled = false
+                sortLabel = sort[indexPath!.row]
+                tableView.reloadData()
+            }
+        }
+
+        
+       
+    }
+        
 
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -251,25 +290,38 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("DropDownCell", forIndexPath: indexPath) as! DropDownTableViewCell
-            cell.dropButton.setTitle(distances[indexPath.row], forState: UIControlState.Normal)
-    //        cell.delegate = self
-          //  let dropDown = DropDown()
-//            let view = UIView()
-//            v
-//            dropDown.width = 100
-//            
-//            dropDown.anchorView = view
-          //  dropDown.direction = .Top
-          //  dropDown.dataSource = ["Best Match", "0.3 miles", "1 mile", //"5 miles","20 miles"]
-           // dropDown.show()
-           //cell.contentView.addSubview(dropDown)
-        //cell.switchLabel.text = "test"
+            
+            //cell.arrow.image = UIImage(named: "arrow.png");
+            if(!distEnabled && distLabel != "" ) {
+                cell.textLabel!.text = distLabel
+                cell.arrow.hidden = false
+
+            } else {
+            cell.textLabel!.text = distances[indexPath.row]
+                cell.arrow.hidden = true
+                
+            }
+            if(!distEnabled) {
+                cell.arrow.hidden = false
+            }
+            distLabel = cell.textLabel!.text!
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("DropDownCell", forIndexPath: indexPath) as! DropDownTableViewCell
-            cell.dropButton.setTitle(sort[indexPath.row], forState: UIControlState.Normal)
             
-    //        cell.delegate = self
+            if(!sortEnabled && sortLabel != "" ) {
+                cell.textLabel!.text = sortLabel
+                cell.arrow.hidden = false
+                
+            } else {
+                cell.textLabel!.text = sort[indexPath.row]
+                cell.arrow.hidden = true
+                
+            }
+            if(!sortEnabled) {
+                cell.arrow.hidden = false
+            }
+            sortLabel = cell.textLabel!.text!
             return cell
             
         }
@@ -314,6 +366,8 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
         dismissViewControllerAnimated(true, completion: nil)
         var filters = [String : AnyObject]()
         filters["deals"] = deals
+        filters["distance"] = distLabel
+               filters["sort"] = sortLabel
         var selectedCat = [String]()
               for(row, isSelected) in switchStates {
            if isSelected {

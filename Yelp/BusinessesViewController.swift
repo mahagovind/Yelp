@@ -13,6 +13,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
 
     @IBOutlet var tableView: UITableView!
     var businesses: [Business]!
+  
     var filteredBusinesses : [Business]!
       let searchBar = UISearchBar()
     
@@ -122,12 +123,39 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func filtersViewContoller(filtersViewController: FiltersViewController, didUpdateFilters filters: [String : AnyObject]) {
+       
         let categories = filters["categories"] as? [String]
         let deals = filters["deals"] as? Bool
+        let dist = filters["distance"] as? String
+        let distArr = dist!.componentsSeparatedByString(" ")
+        var distValue = Int(distArr[0])
+
+        let sortlabel = filters["sort"] as? String
+        
+                var sortvalue :YelpSortMode
+        switch (sortlabel!) {
+        case "Best Match":sortvalue = .BestMatched
+        case "Distance":sortvalue = .Distance
+        case "Rating": sortvalue = .HighestRated
+        default: sortvalue = .BestMatched
+            
+        }
+
         self.showLoadingHUD()
-        Business.searchWithTerm("Restaurants", sort: nil, categories: categories, deals: deals) { (businesses: [Business]!, error) -> Void in
+        Business.searchWithTerm("Restaurants", sort: sortvalue, categories: categories, deals: deals) { (businesses: [Business]!, error) -> Void in
             self.businesses = businesses
-            self.filteredBusinesses = businesses
+            for(var i = 0; i < businesses.count; i++)
+            {
+               let distArr2 = businesses[i].distance!.componentsSeparatedByString(" ")
+                var distValue2 = Int(distArr2[0])
+                if (distValue2 <= distValue )
+                {
+                    self.filteredBusinesses.append(businesses[i])
+                }
+
+                
+            }
+          //  self.filteredBusinesses = businesses
             self.hideLoadingHUD()
             self.tableView.reloadData()
 

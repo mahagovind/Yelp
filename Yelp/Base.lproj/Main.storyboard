@@ -164,11 +164,11 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" white="0.88723411770000005" alpha="0.86114804960000002" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="filterCell" rowHeight="55" id="ur2-SX-kuL" customClass="FilterCell" customModule="Yelp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="310" height="55"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="filterCell" rowHeight="85" id="ur2-SX-kuL" customClass="FilterCell" customModule="Yelp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="310" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ur2-SX-kuL" id="iCB-EK-Fyp">
-                                            <rect key="frame" x="0.0" y="0.0" width="310" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="310" height="84.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eR5-n3-fjG">
@@ -177,8 +177,9 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Zk-Y3-XMx">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" onImage="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="4Zk-Y3-XMx">
                                                     <rect key="frame" x="256" y="12" width="51" height="31"/>
+                                                    <color key="onTintColor" red="0.9471940445" green="0.10896353759999999" blue="0.13617075179999999" alpha="0.86114804960000002" colorSpace="calibratedRGB"/>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -194,24 +195,28 @@
                                             <outlet property="switchLabel" destination="eR5-n3-fjG" id="bo4-Ry-rxj"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DropDownCell" rowHeight="294" id="6Fl-18-LNq" customClass="DropDownTableViewCell" customModule="Yelp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="147" width="310" height="294"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DropDownCell" rowHeight="118" id="6Fl-18-LNq" customClass="DropDownTableViewCell" customModule="Yelp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="177" width="310" height="118"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Fl-18-LNq" id="DPR-dw-1rn">
-                                            <rect key="frame" x="0.0" y="0.0" width="310" height="293.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="310" height="117.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gx6-jc-pVx">
-                                                    <rect key="frame" x="0.0" y="0.0" width="276" height="43"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <connections>
-                                                        <action selector="click:" destination="6Fl-18-LNq" eventType="touchUpInside" id="Yy0-pW-jH9"/>
-                                                    </connections>
-                                                </button>
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" highlightedImage="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="pZt-qz-6Jg">
+                                                    <rect key="frame" x="267" y="44" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="Zdz-Cr-1dB"/>
+                                                        <constraint firstAttribute="height" constant="30" id="vgh-0Y-0Ap"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pZt-qz-6Jg" firstAttribute="trailing" secondItem="DPR-dw-1rn" secondAttribute="trailingMargin" constant="-5" id="GGT-OY-Z3G"/>
+                                                <constraint firstItem="pZt-qz-6Jg" firstAttribute="centerY" secondItem="DPR-dw-1rn" secondAttribute="centerY" id="kja-it-7wM"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="dropButton" destination="Gx6-jc-pVx" id="ULC-EH-y3i"/>
+                                            <outlet property="arrow" destination="pZt-qz-6Jg" id="Kyg-Vu-Djh"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -333,4 +338,7 @@
             <point key="canvasLocation" x="2210" y="948"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrow" width="30" height="30"/>
+    </resources>
 </document>
