@@ -148,9 +148,13 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             {
                let distArr2 = businesses[i].distance!.componentsSeparatedByString(" ")
                 var distValue2 = Int(distArr2[0])
-                if (distValue2 <= distValue )
-                {
-                    self.filteredBusinesses.append(businesses[i])
+                if (distArr[0] != "Best" ) {
+                    if distValue2 <= distValue
+                    {
+                        self.filteredBusinesses.append(businesses[i])
+                    }
+                } else {
+                    self.filteredBusinesses = businesses
                 }
 
                 
