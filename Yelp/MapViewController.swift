@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import MBProgressHUD;
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -55,6 +56,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        showLoadingHUD()
         if let location = locations.first {
             let span = MKCoordinateSpanMake(0.1, 0.1)
             let region = MKCoordinateRegionMake(location.coordinate, span)
@@ -78,8 +80,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                 }
             })
         }
+        hideLoadingHUD()
     }
     
+    private func showLoadingHUD() {
+        let hud = MBProgressHUD.showHUDAddedTo(mapView, animated: true)
+        hud.labelText = "Loading..."
+    }
+    
+    private func hideLoadingHUD() {
+        MBProgressHUD.hideAllHUDsForView(mapView, animated: true)
+    }
     
 
     @IBAction func onList(sender: AnyObject) {

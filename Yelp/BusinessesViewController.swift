@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD;
 
 class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, FiltersViewControllerDelegate {
 
@@ -96,10 +97,11 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             // item should NOT be includ
 //            filteredBusinesses = businesses.filter{
 //                return $0.name!.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil
-    
+    showLoadingHUD()
     Business.searchWithTerm(searchBar.text!, completion: { (businesses: [Business]!, error: NSError!) -> Void in
     self.businesses = businesses
     self.filteredBusinesses = businesses
+        self.hideLoadingHUD()
     self.tableView.reloadData()
     for business in businesses {
     print(business.name!)
@@ -110,13 +112,23 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         }
     
     }
+    private func showLoadingHUD() {
+        let hud = MBProgressHUD.showHUDAddedTo(tableView, animated: true)
+        hud.labelText = "Loading..."
+    }
+    
+    private func hideLoadingHUD() {
+        MBProgressHUD.hideAllHUDsForView(tableView, animated: true)
+    }
     
     func filtersViewContoller(filtersViewController: FiltersViewController, didUpdateFilters filters: [String : AnyObject]) {
         let categories = filters["categories"] as? [String]
         let deals = filters["deals"] as? Bool
+        self.showLoadingHUD()
         Business.searchWithTerm("Restaurants", sort: nil, categories: categories, deals: deals) { (businesses: [Business]!, error) -> Void in
             self.businesses = businesses
             self.filteredBusinesses = businesses
+            self.hideLoadingHUD()
             self.tableView.reloadData()
 
         }
